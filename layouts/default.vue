@@ -1,49 +1,45 @@
 <template>
   <div>
     <nav
-      class="navbar header has-shadow is-primary"
+      class="navbar"
       role="navigation"
-      aria-label="main navigation">
+      aria-label="main navigation"
+    >
       <div class="navbar-brand">
         <a
-          class="navbar-item"
-          href="/">
-          <img
-            src="~assets/buefy.png"
-            alt="Buefy"
-            height="28">
+          role="button"
+          class="navbar-burger burger"
+          aria-label="menu"
+          aria-expanded="false"
+          data-target="navbarBasicExample"
+        >
+          <span
+            aria-hidden="true"/>
+          <span
+            aria-hidden="true"/>
+          <span
+            aria-hidden="true"/>
         </a>
+      </div>
 
-        <div class="navbar-burger">
-          <span/>
-          <span/>
-          <span/>
+      <div
+        id="navbarBasicExample"
+        class="navbar-menu">
+        <div class="navbar-end">
+          <template
+            v-for="(item, key) of items"
+          >
+            <nuxt-link
+              :key="key"
+              :to="item.to"
+              class="navbar-item">
+              {{ item.title }}
+            </nuxt-link>
+          </template>
         </div>
       </div>
     </nav>
-
-    <section class="main-content columns">
-
-      <aside class="column is-2 section">
-        <p class="menu-label is-hidden-touch">General</p>
-        <ul class="menu-list">
-          <li
-            v-for="(item, key) of items"
-            :key="key">
-            <nuxt-link
-              :to="item.to"
-              exact-active-class="is-active">
-              <b-icon :icon="item.icon"/> {{ item.title }}
-            </nuxt-link>
-          </li>
-        </ul>
-      </aside>
-
-      <div class="container column is-10">
-        <nuxt />
-      </div>
-
-    </section>
+    <nuxt />
   </div>
 </template>
 
@@ -52,10 +48,21 @@ export default {
   data() {
     return {
       items: [
-        { title: 'Home', icon: 'home', to: { name: 'index' } },
-        { title: 'Inspire', icon: 'lightbulb', to: { name: 'inspire' } }
+        { title: 'Profile', to: { name: 'index' } },
+        { title: 'Prototypes', to: { name: 'prototypes' } },
+        { title: 'Works', to: { name: 'works' } },
+        { title: 'Skills', to: { name: 'skills' } }
       ]
     }
   }
 }
 </script>
+
+<style scoped lang="scss">
+nav {
+  background-color: #f8f8f7;
+  .navbar-item {
+    color: #2c1814;
+  }
+}
+</style>
